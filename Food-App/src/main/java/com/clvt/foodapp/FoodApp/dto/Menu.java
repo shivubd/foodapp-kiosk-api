@@ -18,7 +18,7 @@ public class Menu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToMany(mappedBy="menu")
+	@OneToMany
 	List<FoodProduct> foodProduct;
 	@OneToOne
 	@JoinColumn
