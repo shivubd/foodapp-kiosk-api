@@ -19,7 +19,7 @@ public class Menu {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToMany(mappedBy="menu")
+	@OneToMany
 	List<FoodProduct> foodProduct;
 	@OneToOne
 	@JoinColumn
@@ -29,6 +29,18 @@ public class Menu {
 
 	public int getId() {
 		return id;
+	}
+	public List<FoodProduct> getFoodProduct() {
+		return foodProduct;
+	}
+	public void setFoodProduct(List<FoodProduct> foodProduct) {
+		this.foodProduct = foodProduct;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public void setId(int id) {
 		this.id = id;

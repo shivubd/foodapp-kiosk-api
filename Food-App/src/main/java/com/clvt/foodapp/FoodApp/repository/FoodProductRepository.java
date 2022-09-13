@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.clvt.foodapp.FoodApp.dto.FoodProduct;
 
-
-@Repository
 public interface FoodProductRepository extends JpaRepository<FoodProduct, Integer> {
 
 	
