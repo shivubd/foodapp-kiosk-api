@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clvt.foodapp.FoodApp.dto.FoodProduct;
+import com.clvt.foodapp.FoodApp.dto.Menu;
 import com.clvt.foodapp.FoodApp.service.FoodProductService;
 import com.clvt.foodapp.FoodApp.service.MenuService;
 
