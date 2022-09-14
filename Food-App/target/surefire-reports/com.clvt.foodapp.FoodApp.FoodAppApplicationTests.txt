@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.clvt.foodapp.FoodApp.FoodAppApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.097 s <<< FAILURE! - in com.clvt.foodapp.FoodApp.FoodAppApplicationTests
+contextLoads  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.clvt.foodapp.FoodApp.dto.FoodProduct.menu in com.clvt.foodapp.FoodApp.dto.Menu.foodProduct
+Caused by: org.hibernate.AnnotationException: mappedBy reference an unknown target entity property: com.clvt.foodapp.FoodApp.dto.FoodProduct.menu in com.clvt.foodapp.FoodApp.dto.Menu.foodProduct
+
