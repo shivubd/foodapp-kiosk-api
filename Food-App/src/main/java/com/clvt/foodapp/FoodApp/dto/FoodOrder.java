@@ -1,5 +1,7 @@
 package com.clvt.foodapp.FoodApp.dto;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class FoodOrder {
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,25 +27,27 @@ public class FoodOrder {
 	@JoinColumn
 	User user;
 	
-	
-	public User getUser() {
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public User getUser() {
+
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+
+
 	public long getTotalPrice() {
 		return totalPrice;
 	}
@@ -73,9 +78,6 @@ public class FoodOrder {
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
-	
-	
-	
 	
 
 }

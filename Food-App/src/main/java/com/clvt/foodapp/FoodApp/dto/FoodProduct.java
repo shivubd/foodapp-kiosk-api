@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
 @Entity
 public class FoodProduct {
 	@Id
@@ -15,10 +19,22 @@ public class FoodProduct {
 	private String about;
 	private int availability;
 	private float price;
+
+	
+	@ManyToOne
+	@JoinColumn
+	Menu menu;
 	
 	public int getId() {
 		return id;
 	}
+	public Menu getMenu() {
+		return menu;
+	}
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

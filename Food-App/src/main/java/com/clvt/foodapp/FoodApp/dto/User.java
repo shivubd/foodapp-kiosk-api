@@ -1,9 +1,17 @@
 package com.clvt.foodapp.FoodApp.dto;
 
+
+import java.util.List;
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
+
+
 
 @Entity
 public class User {
@@ -14,6 +22,18 @@ public class User {
 	private String email;
 	private String password;
 	private String role;
+
+	
+	@OneToMany
+	List<FoodOrder> foodorders;
+	
+	public List<FoodOrder> getFoodorders() {
+		return foodorders;
+	}
+	public void setFoodorders(List<FoodOrder> foodorders) {
+		this.foodorders = foodorders;
+	}
+
 	public int getId() {
 		return id;
 	}
