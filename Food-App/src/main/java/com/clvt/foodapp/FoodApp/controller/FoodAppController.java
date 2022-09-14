@@ -70,14 +70,14 @@ public class FoodAppController {
 	@GetMapping("/items/{id}")
     public Item getItemById(@PathVariable int id) {
         return itemService.getItemById(id);
-    }
+    	}
 
 
 
    @DeleteMapping("/items/{id}")
     public String deleteCar(@PathVariable int id) {
         return itemService.deleteItem(id);
-}
+	}
 	
 	
 	@Autowired
@@ -102,5 +102,68 @@ public class FoodAppController {
 	public String deleteOrderById(@RequestParam int id) {
 		return foodOrderService.deleteFoodOrderById(id);
 	}
+	//foodProduct
+	@Autowired
+	FoodProductService foodProductService;
+	
+
+	
+	@PostMapping("/foodProducts")
+	public FoodProduct saveFoodProduct(@RequestBody FoodProduct foodProduct) {
+		return foodProductService.saveFoodProduct(foodProduct);
+	}
+	
+	@GetMapping("/foodProducts/{id}")
+	public FoodProduct getFoodProductById(@PathVariable int id) {
+		return foodProductService.getFoodProductById(id);
+	}
+	@GetMapping("/foodProducts")
+	public List<FoodProduct> getAllFoodProduct() {
+		return foodProductService.getAllFoodProduct();
+	}
+	
+	@DeleteMapping("/foodProducts/{id}")
+	public void deleteFoodProductById(@PathVariable int id) {
+		 foodProductService.deleteFoodProductById(id);
+	}
+	
+	@PutMapping("/foodProducts/{id}")
+	public FoodProduct updateFoodProduct(@RequestBody FoodProduct foodProduct,@PathVariable int id) {
+		return foodProductService.updateFoodProduct(foodProduct,id);
+	}
+	
+	
+	
+	//menu
+
+	@Autowired
+	 MenuService menuService;
+	@PostMapping("/menu")
+	public Menu saveMenu(@RequestBody Menu menu) {
+		return menuService.saveMenu(menu);
+	}
+	
+	@GetMapping("/menu/{id}")
+	public Menu getMenuById(@PathVariable int id) {
+		return menuService.getMenuById(id);
+	}
+	@GetMapping("/menu")
+	public List<Menu> getAllMenu() {
+		return menuService.getAllMenu();
+	}
+	
+	@DeleteMapping("/menu/{id}")
+	public void deleteMenuById(@PathVariable int id) {
+		 menuService.deleteMenuById(id);
+	}
+	
+	@PutMapping("/menu/{id}")
+	public Menu updateMenu(@RequestBody Menu menu,@PathVariable int id) {
+		return menuService.updateMenu(menu,id);
+	}
+
+	
+	
+	
 }
 
