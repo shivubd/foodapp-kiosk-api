@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clvt.foodapp.FoodApp.dto.FoodProduct;
@@ -18,7 +17,6 @@ import com.clvt.foodapp.FoodApp.service.MenuService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/foodProducts")
 public class FoodAppController{
 	
 	
@@ -28,26 +26,26 @@ public class FoodAppController{
 	
 
 	
-	@PostMapping
+	@PostMapping("/foodProducts")
 	public FoodProduct saveFoodProduct(@RequestBody FoodProduct foodProduct) {
 		return foodProductService.saveFoodProduct(foodProduct);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/foodProducts/{id}")
 	public FoodProduct getFoodProductById(@PathVariable int id) {
 		return foodProductService.getFoodProductById(id);
 	}
-	@GetMapping
+	@GetMapping("/foodProducts")
 	public List<FoodProduct> getAllFoodProduct() {
 		return foodProductService.getAllFoodProduct();
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/foodProducts/{id}")
 	public void deleteFoodProductById(@PathVariable int id) {
 		 foodProductService.deleteFoodProductById(id);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/foodProducts/{id}")
 	public FoodProduct updateFoodProduct(@RequestBody FoodProduct foodProduct,@PathVariable int id) {
 		return foodProductService.updateFoodProduct(foodProduct,id);
 	}
@@ -58,26 +56,26 @@ public class FoodAppController{
 
 	@Autowired
 	 MenuService menuService;
-	@PostMapping
+	@PostMapping("/menu")
 	public Menu saveMenu(@RequestBody Menu menu) {
 		return menuService.saveMenu(menu);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/menu/{id}")
 	public Menu getMenuById(@PathVariable int id) {
 		return menuService.getMenuById(id);
 	}
-	@GetMapping
+	@GetMapping("/menu")
 	public List<Menu> getAllMenu() {
 		return menuService.getAllMenu();
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/menu/{id}")
 	public void deleteMenuById(@PathVariable int id) {
 		 menuService.deleteMenuById(id);
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping("/menu/{id}")
 	public Menu updateMenu(@RequestBody Menu menu,@PathVariable int id) {
 		return menuService.updateMenu(menu,id);
 	}
