@@ -53,13 +53,9 @@ public class ItemDao {
 	        if(item != null)
 	        {
 	            itemRepository.delete(item);
-	            return item.getName()+" Item is deleted";
+	            return " Item is deleted";
 	        }else {
 	            return "No Item is available with specified id";
 	        }
 	    }
-	
-	
-	
-
 }

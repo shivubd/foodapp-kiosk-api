@@ -27,7 +27,10 @@ public class MenuDao {
 		Optional<Menu> menu = menuRepository.findById(id);
 		if(menu.isPresent()) {
 			return menu.get();
-		}throw new RuntimeException("employee is not found for the id  "+id);
+		}
+		else {
+			return null;
+		}
 	}
 
 	public List<Menu> getAllMenus() {
@@ -38,15 +41,8 @@ public class MenuDao {
 		menuRepository.deleteById(id);	
 	}
 
-	public Menu updateMenu(Menu menu, int id) {
-		Optional<Menu> current =menuRepository.findById(id);
-		if(current.isPresent()) {
-			menu.setId(id);
-			return menuRepository.save(menu);
-		}else {
-			return null;
-		}
-}
-
+	public Menu updateMenu(Menu menu) {
+		return menuRepository.save(menu);
+	}
 
 }

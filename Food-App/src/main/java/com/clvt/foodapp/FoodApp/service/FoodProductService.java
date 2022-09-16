@@ -36,9 +36,8 @@ public class FoodProductService {
 	}
 
 
-	public  FoodProduct updateFoodProduct(FoodProduct foodProduct, int id) {
-		// TODO Auto-generated method stub
-		return foodProductDao.updateFoodProduct(foodProduct,id);
+	public FoodProduct updateFoodProduct(FoodProduct foodProduct) {
+		return foodProductDao.updateFoodProduct(foodProduct);
 	}
 
 }

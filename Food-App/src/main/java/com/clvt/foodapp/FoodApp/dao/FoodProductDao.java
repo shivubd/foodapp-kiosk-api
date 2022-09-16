@@ -34,14 +34,7 @@ public class FoodProductDao {
 	public void deleteFoodProductById(int id) {
 		foodProductRepository.deleteById(id);	
 	}
-
-	public FoodProduct updateFoodProduct(FoodProduct foodProduct, int id) {
-		Optional<FoodProduct> current =foodProductRepository.findById(id);
-		if(current.isPresent()) {
-			foodProduct.setId(id);
-			return foodProductRepository.save(foodProduct);
-		}else {
-			return null;
-		}
-}
+	public FoodProduct updateFoodProduct(FoodProduct foodProduct) {
+		return foodProductRepository.save(foodProduct);
+	}
 }

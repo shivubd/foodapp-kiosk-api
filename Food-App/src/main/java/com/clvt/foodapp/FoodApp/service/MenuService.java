@@ -35,12 +35,7 @@ public class MenuService {
 	}
 
 
-	public  Menu updateMenu(Menu menu, int id) {
-		// TODO Auto-generated method stub
-		return menuDao.updateMenu(menu,id);
+	public  Menu updateMenu(Menu menu) {
+		return menuDao.updateMenu(menu);
 	}
-
-	
-	
-
 }

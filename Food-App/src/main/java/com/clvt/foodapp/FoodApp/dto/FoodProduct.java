@@ -21,20 +21,9 @@ public class FoodProduct {
 	private float price;
 
 	
-	@ManyToOne
-	@JoinColumn
-	Menu menu;
-	
 	public int getId() {
 		return id;
 	}
-	public Menu getMenu() {
-		return menu;
-	}
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -61,6 +50,9 @@ public class FoodProduct {
 	}
 	public void setAvailability(int availability) {
 		this.availability = availability;
+	}
+	public void reduceAvailability(int quantity) {
+		this.availability=this.availability-quantity;
 	}
 	public float getPrice() {
 		return price;

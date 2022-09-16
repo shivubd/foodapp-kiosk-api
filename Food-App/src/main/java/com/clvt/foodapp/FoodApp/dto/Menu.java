@@ -13,49 +13,31 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Menu {
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	private String name;
 	@OneToMany
-	List<FoodProduct> foodProduct;
-
-	@OneToMany(mappedBy="menu")
 	List<FoodProduct> foodProducts;
 
-	@OneToOne
-	@JoinColumn
-	User user;
-	
-
-
-
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public void setFoodProduct(List<FoodProduct> foodProduct) {
-		this.foodProduct = foodProduct;
-	}
-	public List<FoodProduct> getFoodProduct() {
-		return foodProduct;
-	}
 	public void setFoodProducts(List<FoodProduct> foodProducts) {
-		this.foodProduct = foodProducts;
+		this.foodProducts = foodProducts;
 	}
-
+	public List<FoodProduct> getFoodProducts() {
+		return foodProducts;
+	}
 }
 
 	
