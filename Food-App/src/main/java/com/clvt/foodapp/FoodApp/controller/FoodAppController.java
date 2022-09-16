@@ -21,7 +21,6 @@ import com.clvt.foodapp.FoodApp.dto.Menu;
 import com.clvt.foodapp.FoodApp.dto.User;
 import com.clvt.foodapp.FoodApp.service.FoodOrderService;
 import com.clvt.foodapp.FoodApp.service.FoodProductService;
-import com.clvt.foodapp.FoodApp.service.ItemService;
 import com.clvt.foodapp.FoodApp.service.MenuService;
 import com.clvt.foodapp.FoodApp.service.UserService;
 
@@ -200,6 +199,5 @@ public class FoodAppController {
 	public Menu updateMenu(@RequestBody Menu menu) {
 		return menuService.updateMenu(menu);
 	}
-
 }
 
