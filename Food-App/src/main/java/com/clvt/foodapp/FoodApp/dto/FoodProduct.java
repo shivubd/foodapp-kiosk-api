@@ -4,8 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 
 @Entity
 public class FoodProduct {
@@ -13,23 +12,15 @@ public class FoodProduct {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String  type;
+	//True - Veg	False - Non-veg
+	private boolean  type;
 	private String about;
 	private int availability;
 	private float price;
-	
-	@ManyToOne
-	@JoinColumn
-	Menu menu;
+
 	
 	public int getId() {
 		return id;
-	}
-	public Menu getMenu() {
-		return menu;
-	}
-	public void setMenu(Menu menu) {
-		this.menu = menu;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -39,12 +30,6 @@ public class FoodProduct {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	public String getAbout() {
 		return about;
@@ -58,10 +43,19 @@ public class FoodProduct {
 	public void setAvailability(int availability) {
 		this.availability = availability;
 	}
+	public void reduceAvailability(int quantity) {
+		this.availability=this.availability-quantity;
+	}
 	public float getPrice() {
 		return price;
 	}
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	public boolean getType() {
+		return type;
+	}
+	public void setType(boolean type) {
+		this.type = type;
 	}
 }

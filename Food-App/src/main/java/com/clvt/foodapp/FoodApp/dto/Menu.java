@@ -13,22 +13,18 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Menu {
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToMany(mappedBy="menu")
+	private String name;
+	@OneToMany
 	List<FoodProduct> foodProducts;
-	@OneToOne
-	@JoinColumn
-	User user;
-	
-	public User getUser() {
-		return user;
+
+	public String getName() {
+		return name;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getId() {
 		return id;
@@ -36,10 +32,13 @@ public class Menu {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public List<FoodProduct> getFoodProducts() {
-		return foodProducts;
-	}
 	public void setFoodProducts(List<FoodProduct> foodProducts) {
 		this.foodProducts = foodProducts;
 	}
+	public List<FoodProduct> getFoodProducts() {
+		return foodProducts;
+	}
 }
+
+	
+
