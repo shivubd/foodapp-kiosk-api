@@ -2,10 +2,12 @@ package com.clvt.foodapp.FoodApp.config;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Properties;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -34,4 +36,21 @@ public class ApplicationConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.clvt.foodapp.FoodApp")).build().apiInfo(apiInfo)
                 .useDefaultResponseMessages(false);
     }
+//	@Bean
+//	public JavaMailSender getJavaMailSender() {
+//	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+//	    mailSender.setHost("smtp.gmail.com");
+//	    mailSender.setPort(587);
+//	    
+//	    mailSender.setUsername("my.gmail@gmail.com");
+//	    mailSender.setPassword("password");
+//	    
+//	    Properties props = mailSender.getJavaMailProperties();
+//	    props.put("mail.transport.protocol", "smtp");
+//	    props.put("mail.smtp.auth", "true");
+//	    props.put("mail.smtp.starttls.enable", "true");
+//	    props.put("mail.debug", "true");
+//	    
+//	    return mailSender;
+//	}
 }

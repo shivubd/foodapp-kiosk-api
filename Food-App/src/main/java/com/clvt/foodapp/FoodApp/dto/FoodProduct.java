@@ -15,7 +15,8 @@ public class FoodProduct {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String  type;
+	//True - Veg	False - Non-veg
+	private boolean  type;
 	private String about;
 	private int availability;
 	private float price;
@@ -32,12 +33,6 @@ public class FoodProduct {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	public String getAbout() {
 		return about;
@@ -59,5 +54,11 @@ public class FoodProduct {
 	}
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	public boolean getType() {
+		return type;
+	}
+	public void setType(boolean type) {
+		this.type = type;
 	}
 }

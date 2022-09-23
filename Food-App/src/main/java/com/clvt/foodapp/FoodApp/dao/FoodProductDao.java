@@ -13,7 +13,6 @@ import com.clvt.foodapp.FoodApp.repository.FoodProductRepository;
 public class FoodProductDao {
 	
 	@Autowired
-	
 	FoodProductRepository foodProductRepository;
 	
 	public FoodProduct  saveFoodProduct(FoodProduct foodProduct) {

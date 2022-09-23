@@ -27,10 +27,8 @@ public class FoodOrder {
 	private String orderCreatedTime;
 	private String orderDeliveryTime;
 	private String customerName;
-	private String contactNumber;
+	private String customerMail;
 	
-	@ManyToOne
-	User user;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "food_order_id", referencedColumnName = "id")
@@ -54,13 +52,6 @@ public class FoodOrder {
     public void setStatus(String status) {
         this.status = status;
     }
-    public User getUser() {
-
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
 	public float getTotalPrice() {
 		return totalPrice;
 	}
@@ -86,10 +77,10 @@ public class FoodOrder {
 		this.customerName = customerName;
 	}
 	public String getContactNumber() {
-		return contactNumber;
+		return customerMail;
 	}
 	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
+		this.customerMail = contactNumber;
 	}
 	
 
