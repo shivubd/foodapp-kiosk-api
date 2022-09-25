@@ -1,7 +1,4 @@
 package com.clvt.foodapp.FoodApp.dto;
-
-
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,7 +18,7 @@ public class FoodOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String status;
+	private boolean status;
 	private float totalPrice;
 	private String orderCreatedTime;
 	private String orderDeliveryTime;
@@ -46,10 +42,10 @@ public class FoodOrder {
     public void setId(int id) {
         this.id = id;
     }
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 	public float getTotalPrice() {
