@@ -13,13 +13,10 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.clvt.foodapp.FoodApp.dao.FoodOrderDao;
 import com.clvt.foodapp.FoodApp.dto.FoodOrder;
-import com.clvt.foodapp.FoodApp.dto.FoodProduct;
 import com.clvt.foodapp.FoodApp.dto.Item;
 @Component
 public class FoodOrderService {
@@ -60,8 +57,8 @@ public class FoodOrderService {
 		   msg.setFrom(new InternetAddress("noreply@gmail.com", false));
 
 		   msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(foodOrder.getContactNumber()));
-		   msg.setSubject("ORDER SUMMARY");
-		   String content = "OrderId: "+foodOrder.getId()+"\nCustomer name: "+foodOrder.getCustomerName()+"\n\n\n"
+		   msg.setSubject("FoodApp - Order summary");
+		   String content = "\nCustomer name: "+foodOrder.getCustomerName()+"\n\n\n"
 		   		+ "ITEMS\n";
 		   for(Item i:foodOrder.getItems()) {
 			   content = content + "\n" + fp.getFoodProductById(i.getProductId()).getName() + "--" + i.getQuantity() + ".Nos--Rs." + i.getPrice();

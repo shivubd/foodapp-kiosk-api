@@ -1,11 +1,8 @@
 package com.clvt.foodapp.FoodApp.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 import com.clvt.foodapp.FoodApp.dao.UserDao;
 import com.clvt.foodapp.FoodApp.dto.User;
 
@@ -21,13 +18,8 @@ public class UserService {
 	public User updateUser(User user) {
 		return userDao.updateUser(user);
 	}
-	public String deleteUser(int id) {
-		return userDao.deleteUser(id);
-	}
 	public List<User> getUsers(){
 		return userDao.getUsers();
 	}
-	public User getUserById(int id) {
-		return userDao.getUserById(id);
-	}
+
 }
