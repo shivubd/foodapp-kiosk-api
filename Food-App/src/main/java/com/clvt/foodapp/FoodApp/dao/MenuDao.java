@@ -12,11 +12,7 @@ import com.clvt.foodapp.FoodApp.repository.MenuRepository;
 
 @Repository
 public class MenuDao {
-	
-	
-	
 	@Autowired
-	
 	MenuRepository menuRepository;
 	
 	public Menu  saveMenu(Menu menu) {

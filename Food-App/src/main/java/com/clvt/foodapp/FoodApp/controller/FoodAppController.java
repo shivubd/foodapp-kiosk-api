@@ -1,22 +1,10 @@
 package com.clvt.foodapp.FoodApp.controller;
-
 import java.io.IOException;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-
-import javax.mail.Message;
+import java.util.Optional;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,60 +20,75 @@ import org.springframework.web.bind.annotation.RestController;
 import com.clvt.foodapp.FoodApp.dto.FoodOrder;
 import com.clvt.foodapp.FoodApp.dto.FoodProduct;
 import com.clvt.foodapp.FoodApp.dto.Item;
+
+import com.clvt.foodapp.FoodApp.dto.LoginUser;
 import com.clvt.foodapp.FoodApp.dto.Menu;
 import com.clvt.foodapp.FoodApp.dto.User;
+import com.clvt.foodapp.FoodApp.repository.UserRepository;
 import com.clvt.foodapp.FoodApp.service.FoodOrderService;
 import com.clvt.foodapp.FoodApp.service.FoodProductService;
 import com.clvt.foodapp.FoodApp.service.MenuService;
 import com.clvt.foodapp.FoodApp.service.UserService;
 
-import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
+import io.swagger.annotations.ApiResponse;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class FoodAppController {
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	UserRepository userRepository;
 	
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "User added sucessfully")})
-	@PostMapping(value =  "/user",
-			consumes = {MediaType.APPLICATION_JSON_VALUE},
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public User saveUser(@RequestBody User user) {
-		return userService.saveUser(user);
+	@Autowired
+	MenuService menuService;
+
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "User added sucessfully") })
+	@PostMapping(value = "/user", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public Boolean saveUser(@RequestBody User user) {
+
+		String newEmail = user.getEmail();
+		Optional<User> current = userRepository.findByEmail(newEmail);
+		if (!current.isPresent()) {
+			System.out.println("\n \n \n" + user.getEmail() + "username" + user.getName());
+			userService.saveUser(user);
+			return true;
+		} else {
+			System.out.println("\n \n \n not working " + user.getEmail() + "username" + user.getName());
+
+			return false;
+		}
 	}
-	
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "User updated sucessfully")})
-	@PutMapping(value = "/user",
-			consumes = {MediaType.APPLICATION_JSON_VALUE},
-			produces = {MediaType.APPLICATION_JSON_VALUE})
+
+
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "User updated sucessfully") })
+	@PutMapping(value = "/user", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public User updateUser(@RequestBody User user) {
+		
 		return userService.updateUser(user);
 	}
-	
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "Users fetched sucessfully")})
-	@GetMapping(value = "/user",
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<User> getUsers(){
-		return userService.getUsers();
+
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "User with specified id fetched sucessfully") })
+	@PostMapping(value = "/login", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public String verifyLogin(@RequestBody LoginUser user) {
+
+		Optional<User> current = userRepository.findByEmail(user.getEmail());
+		if (current.isPresent()) {
+
+			if (user.getPassword().equals(current.get().getPassword())) {
+				return current.get().getRole();
+			} else {
+				return "INCORRECT_PASSWORD";
+			}
+
+		}
+
+		return "NOT_VALID";
 	}
-	
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "User with specified id fetched sucessfully")})
-	@GetMapping(value = "/user/{id}",
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public User getUserById(@PathVariable int id) {
-		return userService.getUserById(id);
-	}
-	
-	@ApiResponses(value = {@ApiResponse(code = 201, message = "User with specified id deleted sucessfully")})
-	@DeleteMapping(value = "/user",
-			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public String deleteUserById(@RequestParam int id) {
-		return userService.deleteUser(id);
-	}
-	
 	
 	
 	@Autowired
@@ -145,7 +148,6 @@ public class FoodAppController {
 
 	@Autowired
 	FoodProductService foodProductService;
-	
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Food Product was added sucessfully")})
 	@PostMapping(value = "/foodProducts",
 			consumes = {MediaType.APPLICATION_JSON_VALUE},
@@ -172,7 +174,17 @@ public class FoodAppController {
 	@DeleteMapping(value = "/foodProducts/{id}",
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	public void deleteFoodProductById(@PathVariable int id) {
-		 foodProductService.deleteFoodProductById(id);
+		List<Menu> menulist = menuService.getAllMenu();
+		for(Menu menu : menulist) {
+			List<FoodProduct> foodproducts = menu.getFoodProducts();
+			FoodProduct fp = foodProductService.getFoodProductById(id);
+			if(foodproducts.contains(fp)) {
+				foodproducts.remove(fp);
+				menuService.updateMenu(menu);
+				break;
+			}
+		}
+		foodProductService.deleteFoodProductById(id);
 	}
 	
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Food Product was updated sucessfully")})
@@ -180,14 +192,8 @@ public class FoodAppController {
 			consumes = {MediaType.APPLICATION_JSON_VALUE},
 			produces = {MediaType.APPLICATION_JSON_VALUE})
 	public FoodProduct updateFoodProduct(@RequestBody FoodProduct foodProduct) {
-		
-		System.out.println("HERERERERERREER");
 		return foodProductService.updateFoodProduct(foodProduct);
 	}
-	
-
-	@Autowired
-	 MenuService menuService;
 	
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Menu was updated sucessfully")})
 	@PostMapping(value = "/menu",
@@ -226,4 +232,3 @@ public class FoodAppController {
 		return menuService.updateMenu(menu);
 	}
 }
-

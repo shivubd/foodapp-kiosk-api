@@ -13,8 +13,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "foodorder")
 public class FoodOrder {
-
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -78,6 +76,5 @@ public class FoodOrder {
 	public void setContactNumber(String contactNumber) {
 		this.customerMail = contactNumber;
 	}
-	
-
 }
+

@@ -12,7 +12,6 @@ public class FoodProduct {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	//True - Veg	False - Non-veg
 	private boolean  type;
 	private String about;
 	private int availability;
