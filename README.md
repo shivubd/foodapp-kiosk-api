@@ -1,1 +1,1 @@
-# clvt-foodapp
+# Food ordering KIOSK app
